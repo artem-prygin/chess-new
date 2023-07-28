@@ -1,4 +1,14 @@
-<a [routerLink]="'login'">Login</a>
-<a [routerLink]="'dashboard'">Dashboard test</a>
+<ng-container *ngIf="authService.isAuthenticated(); else loginTemplate">
+  <button (click)="authService.logout()">Logout</button>
+  <a [routerLink]="'dashboard'">Dashboard test</a>
+</ng-container>
 
+<ng-template #loginTemplate>
+  <a [routerLink]="'login'">Login</a>
+  <a [routerLink]="'register'">Register</a>
+</ng-template>
+
+<ng-container *ngIf="flashMessage">
+  <div class="flash-message">{{ flashMessage }}</div>
+</ng-container>
 <router-outlet></router-outlet>
