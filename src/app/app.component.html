@@ -1,4 +1,3 @@
-<a [routerLink]="'login'">Login</a>
-<a [routerLink]="'dashboard'">Dashboard</a>
-
+<app-menu *ngIf="authService.isAuthenticated()"></app-menu>
+<app-flash></app-flash>
 <router-outlet></router-outlet>
