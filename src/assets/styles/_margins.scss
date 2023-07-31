@@ -1,0 +1,7 @@
+$pixels: [1, 2, 3, 4, 5, 10, 15, 20];
+
+@each $pixel in $pixels {
+  .m-#{$pixel} {
+    margin: #{$pixel}px;
+  }
+}

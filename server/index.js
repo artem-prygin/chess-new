@@ -1,7 +1,6 @@
 import express from 'express';
 import { Server } from 'socket.io';
 import http from 'http';
-import { MongoClient, ServerApiVersion } from 'mongodb';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
@@ -42,9 +41,9 @@ app.post('/api/register', async (req, res) => {
   try {
     const user = new User({ username, password: hashedPassword });
     await user.save();
-    res.status(201).json({ message: 'Пользователь успешно зарегистрирован.' });
+    res.status(201).json({ message: 'User was successfully registered' });
   } catch (err) {
-    res.status(500).json({ error: 'Что-то пошло не так.' });
+    res.status(500).json({ error: 'Something went wrong. Try again' });
   }
 });
 
@@ -55,7 +54,7 @@ app.post('/api/login', async (req, res) => {
     const user = await User.findOne({ username });
 
     if (!user) {
-      res.status(401).json({ message: 'Неправильное имя пользователя или пароль.' });
+      res.status(401).json({ message: 'Username or password is wrong, try again' });
       return;
     }
 

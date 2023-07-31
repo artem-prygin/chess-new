@@ -1,1 +1,16 @@
-@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "assets/styles/margins";
+@import "assets/styles/flex";
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 50px 20px 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

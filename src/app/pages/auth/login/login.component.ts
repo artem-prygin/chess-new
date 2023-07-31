@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { FlashMessageService } from '../../guards/flash-message.service';
+import { FlashMessageService } from '../../../guards/flash-message.service';
+import { FlashMessageTypeEnum } from '../../../enums/flash-message-type.enum';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { FlashMessageService } from '../../guards/flash-message.service';
 export class LoginComponent implements OnInit {
   username: string;
   password: string;
+  isLoading: boolean;
 
   constructor(
     private authService: AuthService,
@@ -27,13 +29,26 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.isLoading = true;
+
     this.authService.login(this.username, this.password).subscribe({
       next: ({ token }) => {
         localStorage.setItem('token', token);
+        this.flashMessageService.show({
+          text: 'You was successfully logged in',
+          type: FlashMessageTypeEnum.Message,
+        });
         this.router.navigate(['/dashboard']);
       },
       error: (err) => {
-        this.flashMessageService.show(err.error.message);
+        this.flashMessageService.show({
+          text: err.error.message,
+          type: FlashMessageTypeEnum.Error,
+        });
+        this.isLoading = false;
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }

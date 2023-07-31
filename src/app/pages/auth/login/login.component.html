@@ -1,0 +1,40 @@
+<ng-container *ngIf="!isLoading; else loading">
+  <h2>Login</h2>
+  <form (submit)="login()">
+    <div>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input type="username"
+               matInput
+               name="username"
+               [(ngModel)]="username"
+               placeholder="Type your username">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input type="password"
+               matInput
+               name="password"
+               [(ngModel)]="password"
+               placeholder="Type your password">
+      </mat-form-field>
+    </div>
+
+    <button mat-raised-button
+            color="primary">Login
+    </button>
+  </form>
+
+  <p class="d-flex align-center">Or you can
+    <button mat-button
+            [routerLink]="'/auth/register'">Register
+    </button>
+  </p>
+</ng-container>
+
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>

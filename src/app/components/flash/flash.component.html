@@ -1,0 +1,7 @@
+<ng-container *ngIf="flashMessage">
+  <div class="flash-message"
+       [ngClass]="{
+  'error': flashMessage.type === FlashMessageTypeEnum.Error,
+  'warning': flashMessage.type === FlashMessageTypeEnum.Warning
+  }">{{ flashMessage.text }}</div>
+</ng-container>

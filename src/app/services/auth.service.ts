@@ -45,6 +45,7 @@ export class AuthService {
 
   resetTokenExpirationTimer(): void {
     clearTimeout(this.tokenExpirationTimer);
-    this.tokenExpirationTimer = setTimeout(() => this.logout(), 5000);
+    this.tokenExpirationTimer = setTimeout(() => this.logout(), 3600000);
   }
 }
+

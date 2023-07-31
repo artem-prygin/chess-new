@@ -1,0 +1,20 @@
+<nav class="menu d-flex justify-end">
+  <a mat-button
+     class="menu-link"
+     [routerLink]="'smth'"
+     [routerLinkActive]="'menu-link__active'"
+     color="primary">Smth
+  </a>
+
+  <a mat-button
+     class="menu-link"
+     [routerLink]="'dashboard'"
+     [routerLinkActive]="'menu-link__active'"
+     color="primary">Dashboard
+  </a>
+
+  <button mat-button
+          (click)="authService.logout()"
+          color="primary">Logout
+  </button>
+</nav>

@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { FlashMessageTypeEnum } from '../enums/flash-message-type.enum';
+import { FlashMessageInterface } from '../interfaces/flash-message.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FlashMessageService {
-  private messageSubject = new Subject<string>();
-  message$: Observable<string> = this.messageSubject.asObservable();
+  private messageSubject = new Subject<FlashMessageInterface>();
+  message$: Observable<FlashMessageInterface> = this.messageSubject.asObservable();
 
-  show(message: string): void {
-    this.messageSubject.next(message);
+  show(flashMessage: FlashMessageInterface): void {
+    this.messageSubject.next(flashMessage);
   }
 }
